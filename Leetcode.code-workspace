@@ -7,7 +7,9 @@
 	"settings": {
 		"files.associations": {
 			"vector": "cpp",
-			"unordered_map": "cpp"
+			"unordered_map": "cpp",
+			"deque": "cpp",
+			"string": "cpp"
 		}
 	}
 }
