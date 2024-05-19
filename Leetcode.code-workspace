@@ -13,7 +13,9 @@
 			"array": "cpp",
 			"string_view": "cpp",
 			"initializer_list": "cpp",
-			"cstdlib": "c"
+			"cstdlib": "c",
+			"random": "cpp",
+			"limits": "cpp"
 		}
 	}
 }
