@@ -15,7 +15,8 @@
 			"initializer_list": "cpp",
 			"cstdlib": "c",
 			"random": "cpp",
-			"limits": "cpp"
+			"limits": "cpp",
+			"functional": "cpp"
 		}
 	}
 }
