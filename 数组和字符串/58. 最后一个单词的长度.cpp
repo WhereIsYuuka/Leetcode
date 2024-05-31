@@ -9,7 +9,7 @@ public:
             if(s[i] == ' ')
             {
                 // 如果res为0，说明前面有空格，直接跳过
-                if(res == 0);
+                if(res == 0)
                     continue;
                 // 否则，说明遇到了第一个单词，直接返回
                 break;
