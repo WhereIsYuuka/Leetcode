@@ -16,7 +16,11 @@
 			"cstdlib": "c",
 			"random": "cpp",
 			"limits": "cpp",
-			"functional": "cpp"
+			"functional": "cpp",
+			"*.tcc": "cpp",
+			"memory": "cpp",
+			"optional": "cpp",
+			"system_error": "cpp"
 		}
 	}
 }
