@@ -20,7 +20,9 @@
 			"*.tcc": "cpp",
 			"memory": "cpp",
 			"optional": "cpp",
-			"system_error": "cpp"
+			"system_error": "cpp",
+			"iostream": "cpp",
+			"ostream": "cpp"
 		}
 	}
 }
