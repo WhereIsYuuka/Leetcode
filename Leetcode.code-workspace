@@ -6,6 +6,9 @@
 	],
 	"settings": {
 		"files.associations": {
+			"*.sqlbook": "sql",
+			"*.ndjson": "jsonl",
+			"*.dbclient-js": "javascript",
 			"vector": "cpp",
 			"unordered_map": "cpp",
 			"deque": "cpp",
@@ -22,7 +25,13 @@
 			"optional": "cpp",
 			"system_error": "cpp",
 			"iostream": "cpp",
-			"ostream": "cpp"
+			"ostream": "cpp",
+			"bitset": "cpp",
+			"coroutine": "cpp",
+			"stacktrace": "cpp",
+			"typeindex": "cpp",
+			"variant": "cpp",
+			"ranges": "cpp"
 		}
 	}
 }
