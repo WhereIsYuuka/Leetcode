@@ -31,7 +31,8 @@
 			"stacktrace": "cpp",
 			"typeindex": "cpp",
 			"variant": "cpp",
-			"ranges": "cpp"
+			"ranges": "cpp",
+			"numeric": "cpp"
 		}
 	}
 }
