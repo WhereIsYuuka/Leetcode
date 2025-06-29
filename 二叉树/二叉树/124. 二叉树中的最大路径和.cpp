@@ -26,3 +26,24 @@ public:
         return max(left, right) + root->val;
     }
 };
+
+// class Solution {
+// int res = INT_MIN;
+
+// public:
+//     int maxPathSum(TreeNode* root) {
+//         dfs(root);
+//         return res;
+//     }
+
+//     int dfs(TreeNode* root)
+//     {
+//         if(root == nullptr)
+//             return 0;
+//         int l = dfs(root->left);
+//         int r = dfs(root->right);
+
+//         res = max(res, l + r + root->val);
+//         return max(max(l, r) + root->val, 0);
+//     }
+// };
