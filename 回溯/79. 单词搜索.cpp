@@ -35,10 +35,30 @@ public:
     }
 };
 
+// Optimize two points, the first is counting the characters in the board and word,
+// the second is reversing the word if the first character appears more than the last character.
+
 // class Solution {
 // public:
 //     int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, -1, 0, 1};
 //     bool exist(vector<vector<char>>& board, string word) {
+//         unordered_map<char, int> cnt;
+//         for(int i = 0; i < board.size(); i++)
+//         {
+//             for(int j = 0; j < board[0].size(); j++)
+//             {
+//                 cnt[board[i][j]]++;
+//             }
+//         }
+//         unordered_map<char, int> wordCnt;
+//         for(int i = 0; i < word.length(); i++)
+//         {
+//             if(++wordCnt[word[i]] > cnt[word[i]])
+//                 return false;
+//         }
+//         if(cnt[word[0]] > cnt[word.back()])
+//             reverse(word.begin(), word.end());
+
 //         for(int i = 0; i < board.size(); i++)
 //         {
 //             for(int j = 0; j < board[0].size(); j++)
