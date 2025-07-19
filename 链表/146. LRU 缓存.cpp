@@ -150,3 +150,75 @@ public:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+
+
+ /*class LRUCache {
+private:
+    struct ListNode{
+        int key, val;
+        ListNode *pre, *next;
+        ListNode(int key = 0, int val = 0) : key(key), val(val), pre(nullptr), next(nullptr) {}
+    };
+    unordered_map<int, ListNode*> listMp;
+    ListNode *dummyhead;
+    int _capacity;
+
+public:
+    LRUCache(int capacity) {
+        _capacity = capacity;
+        dummyhead = new ListNode();
+        dummyhead->next = dummyhead;
+        dummyhead->pre = dummyhead;
+    }
+    // 
+    int get(int key) {
+        if(!listMp.count(key))
+            return -1;
+
+        ListNode* tmp = listMp[key];
+        RemoveHead(tmp);
+        MoveNodeToHead(tmp);
+        return tmp->val;
+    }
+    
+    void put(int key, int value) {
+        if(listMp.count(key))
+        {
+            ListNode* tmp = listMp[key];
+            tmp->val = value;
+            RemoveHead(tmp);
+            MoveNodeToHead(tmp);
+            return;
+        }
+        ListNode* node = new ListNode(key, value);
+        listMp[key] = node;
+        MoveNodeToHead(node);
+        if(listMp.size() > _capacity)
+        {
+            ListNode* tmp = dummyhead->pre;
+            RemoveHead(tmp);
+            listMp.erase(tmp->key);
+        }
+    }
+
+    void MoveNodeToHead(ListNode *node)
+    {
+        node->pre = dummyhead;
+        node->next = dummyhead->next;
+        dummyhead->next->pre = node;
+        dummyhead->next = node;
+    }
+
+    void RemoveHead(ListNode *node)
+    {
+        node->pre->next = node->next;
+        node->next->pre = node->pre;
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
