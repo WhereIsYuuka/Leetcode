@@ -21,3 +21,25 @@ public:
         return res;
     }
 };
+
+// class Solution {
+// public:
+//     vector<vector<int>> merge(vector<vector<int>>& intervals) {
+//         vector<vector<int>> res;
+//         if(intervals.size() < 1)    
+//             return res;
+//         sort(intervals.begin(), intervals.end());
+//         for(auto interval : intervals)
+//         {
+//             if(!res.empty() && interval[0] <= res.back()[1])
+//             {
+//                 res.back()[1] = max(interval[1], res.back()[1]);
+//             }
+//             else
+//             {
+//                 res.emplace_back(interval);
+//             }
+//         }
+//         return res;
+//     }
+// };
