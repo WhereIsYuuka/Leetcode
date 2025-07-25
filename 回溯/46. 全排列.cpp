@@ -64,3 +64,37 @@ public:
 //         return ans;
 //     }
 // };
+
+// class Solution {
+// public:
+//     vector<vector<int>> permute(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<vector<int>> res;
+//         vector<int> path;
+//         vector<int> visited(n, 0);
+
+//         auto dfs = [&](this auto&& dfs, int i)
+//         {
+//             if(i == n)
+//             {
+//                 res.emplace_back(path);
+//                 return;
+//             }
+//             for(int j = 0; j < n; j++)
+//             {
+//                 if(visited[j])
+//                     continue;
+//                 else
+//                 {
+//                     visited[j] = 1;
+//                     path.emplace_back(nums[j]);
+//                     dfs(i + 1);
+//                     path.pop_back();
+//                     visited[j] = 0;
+//                 }
+//             }
+//         };
+//         dfs(0);
+//         return res;
+//     }
+// };
