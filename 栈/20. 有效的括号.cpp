@@ -55,3 +55,28 @@ public:
 //         return sta.empty();
 //     }
 // };
+
+// class Solution {
+// public:
+//     bool isValid(string s) {
+//         stack<char> stk;
+//         for(auto ch : s)
+//         {
+//             if(ch == '(' || ch == '{' || ch == '[')
+//                 stk.emplace(ch);
+//             else
+//             {
+//                 if(stk.empty())
+//                     return false;
+//                 if(ch == ')' && stk.top() != '(')
+//                     return false;
+//                 if(ch == ']' && stk.top() != '[')
+//                     return false;
+//                 if(ch == '}' && stk.top() != '{')
+//                     return false;
+//                 stk.pop();
+//             }
+//         }
+//         return stk.empty() ? true : false;
+//     }
+// };
