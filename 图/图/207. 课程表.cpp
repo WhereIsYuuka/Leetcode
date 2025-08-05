@@ -29,3 +29,37 @@ public:
         return numCourses == 0;
     }
 };
+
+// class Solution {
+// public:
+//     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+//         vector<vector<int>> course(numCourses);
+//         vector<int> indegree(numCourses, 0);
+//         for(auto& pre : prerequisites)
+//         {
+//             course[pre[1]].emplace_back(pre[0]);
+//         }
+
+//         auto dfs = [&](this auto&& dfs, int i) -> bool{
+//             //正在访问
+//             indegree[i] = 1;
+//             for(auto c : course[i])
+//             {
+//                 if(indegree[c] == 1 || (indegree[c] == 0 && dfs(c)))
+//                 {
+//                     //找到环了
+//                     return true;
+//                 }
+//             }
+//             indegree[i] = 2;
+//             return false;
+//         };
+
+//         for(int i = 0; i < numCourses; i++)
+//         {
+//             if(indegree[i] == 0 && dfs(i))
+//                 return false;
+//         }
+//         return true;
+//     }
+// };
