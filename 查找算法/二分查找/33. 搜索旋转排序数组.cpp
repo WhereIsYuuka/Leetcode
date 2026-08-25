@@ -11,7 +11,7 @@ public:
                 l = mid + 1;
             }
             else if(nums[mid] <= end && target > end){
-                r = mid;
+                r = mid; 
             }
             else{
                 if(nums[mid] < target){
