@@ -2,25 +2,54 @@ class Solution {
 public:
     int search(vector<int>& nums, int target) {
         int n = nums.size();
-        if (n == 0) return -1;
+        int end = nums.back();
         int l = 0, r = n - 1;
-        while (l < r) {
-            int mid = l + r >> 1;
-            if (nums[mid] > nums[r]) l = mid + 1;
-            else r = mid;
+        while(l < r){
+            int mid = l + (r - l) / 2;
+
+            if(nums[mid] > end && target <= end){
+                l = mid + 1;
+            }
+            else if(nums[mid] <= end && target > end){
+                r = mid;
+            }
+            else{
+                if(nums[mid] < target){
+                    l = mid + 1;
+                }
+                else{
+                    r = mid;
+                }
+            }
         }
-        int rot = l;
-        l = 0, r = n - 1;
-        while (l <= r) {
-            int mid = l + r >> 1;
-            int realmid = (mid + rot) % n;
-            if (nums[realmid] == target) return realmid;
-            if (nums[realmid] < target) l = mid + 1;
-            else r = mid - 1;
-        }
-        return -1;
+
+        return nums[l] != target ? -1 : l;
     }
 };
+
+// class Solution {
+// public:
+//     int search(vector<int>& nums, int target) {
+//         int n = nums.size();
+//         if (n == 0) return -1;
+//         int l = 0, r = n - 1;
+//         while (l < r) {
+//             int mid = l + r >> 1;
+//             if (nums[mid] > nums[r]) l = mid + 1;
+//             else r = mid;
+//         }
+//         int rot = l;
+//         l = 0, r = n - 1;
+//         while (l <= r) {
+//             int mid = l + r >> 1;
+//             int realmid = (mid + rot) % n;
+//             if (nums[realmid] == target) return realmid;
+//             if (nums[realmid] < target) l = mid + 1;
+//             else r = mid - 1;
+//         }
+//         return -1;
+//     }
+// };
 
 // class Solution {
 // public:
