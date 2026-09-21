@@ -2,32 +2,59 @@ class Solution {
 public:
     vector<string> generateParenthesis(int n) {
         vector<string> res;
-        string path;
-        dfs(res, path, n, n);
+        string path(n*2, 0);
+        auto dfs = [&](this auto&& dfs, int l, int r) -> void{
+            if(r == n)
+            {
+                res.emplace_back(path);
+                return;
+            }
+            if(l < n)
+            {
+                path[l+r] = '(';
+                dfs(l+1, r);
+            }
+            if(r < l)
+            {
+                path[l+r] = ')';
+                dfs(l, r+1);
+            }
+        };
+        dfs(0, 0);
         return res;
     }
-
-    void dfs(vector<string>& res, string& path, int left, int right) 
-    {
-        if(left == 0 && right == 0)
-        {
-            res.push_back(path);
-            return;
-        }
-        if(left > 0)
-        {
-            path.push_back('(');
-            dfs(res, path, left - 1, right);
-            path.pop_back();
-        }
-        if(left < right)
-        {
-            path.push_back(')');
-            dfs(res, path, left, right - 1);
-            path.pop_back();
-        }
-    }
 };
+
+// class Solution {
+// public:
+//     vector<string> generateParenthesis(int n) {
+//         vector<string> res;
+//         string path;
+//         dfs(res, path, n, n);
+//         return res;
+//     }
+
+//     void dfs(vector<string>& res, string& path, int left, int right) 
+//     {
+//         if(left == 0 && right == 0)
+//         {
+//             res.push_back(path);
+//             return;
+//         }
+//         if(left > 0)
+//         {
+//             path.push_back('(');
+//             dfs(res, path, left - 1, right);
+//             path.pop_back();
+//         }
+//         if(left < right)
+//         {
+//             path.push_back(')');
+//             dfs(res, path, left, right - 1);
+//             path.pop_back();
+//         }
+//     }
+// };
 
 // class Solution {
 // public:
