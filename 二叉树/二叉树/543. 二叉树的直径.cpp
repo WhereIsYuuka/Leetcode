@@ -13,15 +13,32 @@ class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
         int res = 0;
-        auto dfs = [&](this auto&& dfs, TreeNode* root){
-            if(!root)
+        auto dfs = [&](this auto&& dfs, TreeNode* node) -> int{
+            if(node == nullptr)
                 return 0;
-            int l = dfs(root->left);
-            int r = dfs(root->right);
-            res = max(res, l + r);
-            return max(l, r) + 1;
+            int left = dfs(node->left);
+            int right = dfs(node->right);
+            res = max(res, left + right);
+            return max(left, right) + 1;
         };
         dfs(root);
         return res;
     }
 };
+
+// class Solution {
+// public:
+//     int diameterOfBinaryTree(TreeNode* root) {
+//         int res = 0;
+//         auto dfs = [&](this auto&& dfs, TreeNode* root){
+//             if(!root)
+//                 return 0;
+//             int l = dfs(root->left);
+//             int r = dfs(root->right);
+//             res = max(res, l + r);
+//             return max(l, r) + 1;
+//         };
+//         dfs(root);
+//         return res;
+//     }
+// };
