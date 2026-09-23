@@ -1,40 +1,61 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* dummyHead = new ListNode();
-        ListNode* tmpNode = dummyHead;
-        int carry = 0;
-        while(l1 != nullptr || l2 != nullptr)
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2, int carry = 0) {
+        if(l1 == nullptr && l2 == nullptr && carry == 0)
+            return nullptr;
+        int sum = carry;
+        if(l1)
         {
-            int x = l1 == nullptr ? 0 : l1->val;
-            int y = l2 == nullptr ? 0 : l2->val;
-            int sum = x + y + carry;
-            carry = sum/10;
-            tmpNode->next = new ListNode(sum%10);
-            tmpNode = tmpNode->next;
-            if(l1 != nullptr)
-                l1 = l1->next;
-            if(l2 != nullptr)
-                l2 = l2->next;
+            sum += l1->val;
+            l1 = l1->next;
         }
-        if(carry != 0)
+        if(l2)
         {
-            tmpNode->next = new ListNode(carry);
+            sum += l2->val;
+            l2 = l2->next;
         }
-        return dummyHead->next;
+        return new ListNode(sum % 10, addTwoNumbers(l1, l2, sum / 10));
     }
 };
 
-// /**
-//  * Definition for singly-linked list.
-//  * struct ListNode {
-//  *     int val;
-//  *     ListNode *next;
-//  *     ListNode() : val(0), next(nullptr) {}
-//  *     ListNode(int x) : val(x), next(nullptr) {}
-//  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
-//  * };
-//  */
+// class Solution {
+// public:
+//     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+//         ListNode* dummyHead = new ListNode();
+//         ListNode* tmpNode = dummyHead;
+//         int carry = 0;
+//         while(l1 != nullptr || l2 != nullptr)
+//         {
+//             int x = l1 == nullptr ? 0 : l1->val;
+//             int y = l2 == nullptr ? 0 : l2->val;
+//             int sum = x + y + carry;
+//             carry = sum/10;
+//             tmpNode->next = new ListNode(sum%10);
+//             tmpNode = tmpNode->next;
+//             if(l1 != nullptr)
+//                 l1 = l1->next;
+//             if(l2 != nullptr)
+//                 l2 = l2->next;
+//         }
+//         if(carry != 0)
+//         {
+//             tmpNode->next = new ListNode(carry);
+//         }
+//         return dummyHead->next;
+//     }
+// };
+
+
 // class Solution {
 // public:
 //     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
