@@ -13,41 +13,60 @@ class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> res;
-        if(!root)
+        if(root == nullptr)
             return res;
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty())
+        queue<TreeNode*> nodePath;
+        nodePath.push(root);
+        while(!nodePath.empty())
         {
-            int size = q.size();
-            vector<int> level;
-            for(int i = 0; i < size; i++)
+            vector<int> numPath;
+            int n = nodePath.size();
+            for(int i = 0; i < n; i++)
             {
-                TreeNode* tmp = q.front();
-                q.pop();
-                level.push_back(tmp->val);
+                TreeNode* tmp = nodePath.front();
+                nodePath.pop();
                 if(tmp->left)
-                    q.push(tmp->left);
+                    nodePath.push(tmp->left);
                 if(tmp->right)
-                    q.push(tmp->right);
+                    nodePath.push(tmp->right);
+                numPath.emplace_back(tmp->val);
+
             }
-            res.push_back(level);
+            res.emplace_back(numPath);
         }
         return res;
     }
 };
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+// class Solution {
+// public:
+//     vector<vector<int>> levelOrder(TreeNode* root) {
+//         vector<vector<int>> res;
+//         if(!root)
+//             return res;
+//         queue<TreeNode*> q;
+//         q.push(root);
+//         while(!q.empty())
+//         {
+//             int size = q.size();
+//             vector<int> level;
+//             for(int i = 0; i < size; i++)
+//             {
+//                 TreeNode* tmp = q.front();
+//                 q.pop();
+//                 level.push_back(tmp->val);
+//                 if(tmp->left)
+//                     q.push(tmp->left);
+//                 if(tmp->right)
+//                     q.push(tmp->right);
+//             }
+//             res.push_back(level);
+//         }
+//         return res;
+//     }
+// };
+
+
 // class Solution {
 // public:
 //     vector<vector<int>> levelOrder(TreeNode* root) {
