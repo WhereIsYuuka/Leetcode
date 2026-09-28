@@ -12,35 +12,49 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        stack<TreeNode*> stk;
-        while(root || !stk.empty())
+        priority_queue<int> pque;
+        auto dfs = [&](this auto&& dfs, TreeNode* node) -> void{
+            if(node == nullptr)
+                return;
+            pque.push(node->val);
+            if(node->right)
+                dfs(node->right);
+            if(node->left)
+                dfs(node->left);
+        };
+        dfs(root);
+        for(int i = pque.size(); i >= 0; i--)
         {
-            while(root)
-            {
-                stk.push(root);
-                root = root->left;
-            }
-            root = stk.top();
-            stk.pop();
-            if(--k == 0)
-                return root->val;
-            root = root->right;
-        }   
-        return -1;
+            if(i == k)
+                return pque.top();
+            pque.pop();
+        }
+        return 0;
     }
 };
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+// class Solution {
+// public:
+//     int kthSmallest(TreeNode* root, int k) {
+//         stack<TreeNode*> stk;
+//         while(root || !stk.empty())
+//         {
+//             while(root)
+//             {
+//                 stk.push(root);
+//                 root = root->left;
+//             }
+//             root = stk.top();
+//             stk.pop();
+//             if(--k == 0)
+//                 return root->val;
+//             root = root->right;
+//         }   
+//         return -1;
+//     }
+// };
+
+
 // class Solution {
 // public:
 //     vector<int> nums;
@@ -63,17 +77,7 @@ public:
 //     }
 // };
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+
 // class Solution {
 // public:
 //     int kthSmallest(TreeNode* root, int k) {
