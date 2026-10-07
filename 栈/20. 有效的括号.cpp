@@ -1,27 +1,66 @@
 class Solution {
 public:
     bool isValid(string s) {
-        stack<char> sta;
-        for(auto it : s)
+        stack<char> stk;
+        int len = s.length();
+        if(len % 2 != 0)
+            return false;
+        for(auto ch : s)
         {
-            if(it == '(' || it == '[' || it == '{')
-                sta.push(it);
+            if(ch == '{' || ch == '(' || ch == '[')
+            {
+                stk.push(ch);
+            }
             else
             {
-                if(sta.empty())
-                    return false;
-                else if(it == ')' && sta.top() != '(')
-                    return false;
-                else if(it == ']' && sta.top() != '[')
-                    return false;
-                else if(it == '}' && sta.top() != '{')
-                    return false;
-                sta.pop();
+                if(ch == '}')
+                {
+                    if(stk.empty() || stk.top() != '{')
+                        return false;
+                    stk.pop();
+                }
+                if(ch == ']')
+                {
+                    if(stk.empty() || stk.top() != '[')
+                        return false;
+                    stk.pop();
+                }
+                if(ch == ')')
+                {
+                    if(stk.empty() || stk.top() != '(')
+                        return false;
+                    stk.pop();
+                }
             }
         }
-        return sta.empty();
+        return stk.empty() ? true : false;
     }
 };
+
+// class Solution {
+// public:
+//     bool isValid(string s) {
+//         stack<char> sta;
+//         for(auto it : s)
+//         {
+//             if(it == '(' || it == '[' || it == '{')
+//                 sta.push(it);
+//             else
+//             {
+//                 if(sta.empty())
+//                     return false;
+//                 else if(it == ')' && sta.top() != '(')
+//                     return false;
+//                 else if(it == ']' && sta.top() != '[')
+//                     return false;
+//                 else if(it == '}' && sta.top() != '{')
+//                     return false;
+//                 sta.pop();
+//             }
+//         }
+//         return sta.empty();
+//     }
+// };
 
 
 // class Solution {
