@@ -1,27 +1,46 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int h = matrix.size();
-        int w = matrix[0].size()-1;
-        int l = 0;
-        for(int i = 0; i < h; i++)
+        int n = matrix.size(), m = matrix[0].size();
+        int l = 0, r = n * m;
+        while(l < r)
         {
-            if(matrix[i][w] == target)
-                return true;
-            if(matrix[i][w] > target)
-            {
-               l = i;
-                break; 
-            }
-        }
-        for(int i = 0; i <= w; i++)
-        {
-            if(matrix[l][i] == target)
+            int mid = l + (r - l) / 2;
+            if(target > matrix[mid / m][mid % m])
+                l = mid + 1;
+            else if(target < matrix[mid / m][mid % m])
+                r = mid;
+            else
                 return true;
         }
         return false;
     }
 };
+
+// class Solution {
+// public:
+//     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//         int h = matrix.size();
+//         int w = matrix[0].size()-1;
+//         int l = 0;
+//         for(int i = 0; i < h; i++)
+//         {
+//             if(matrix[i][w] == target)
+//                 return true;
+//             if(matrix[i][w] > target)
+//             {
+//                l = i;
+//                 break; 
+//             }
+//         }
+//         for(int i = 0; i <= w; i++)
+//         {
+//             if(matrix[l][i] == target)
+//                 return true;
+//         }
+//         return false;
+//     }
+// };
 
 // class Solution {
 // public:
