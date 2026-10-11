@@ -1,21 +1,39 @@
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        int left = 0, right = nums.size() - 1;
-        if(target > nums[right]) 
-            return right + 1;
-        if(target < nums[0]) 
-            return left;
-        while(left < right)
+        int l = 0, r = nums.size();
+        while(l < r)
         {
-            int mid = (right + left) / 2;
-            if(nums[mid] == target) 
+            int mid = l + (r - l) / 2;
+            if(nums[mid] < target)
+                l = mid + 1;
+            else if(nums[mid] > target)
+                r = mid;
+            else
                 return mid;
-            else if(nums[mid] < target) 
-                left = mid + 1;
-            else 
-                right = mid;
         }
-        return left;
+        return l;
     }
 };
+
+// class Solution {
+// public:
+//     int searchInsert(vector<int>& nums, int target) {
+//         int left = 0, right = nums.size() - 1;
+//         if(target > nums[right]) 
+//             return right + 1;
+//         if(target < nums[0]) 
+//             return left;
+//         while(left < right)
+//         {
+//             int mid = (right + left) / 2;
+//             if(nums[mid] == target) 
+//                 return mid;
+//             else if(nums[mid] < target) 
+//                 left = mid + 1;
+//             else 
+//                 right = mid;
+//         }
+//         return left;
+//     }
+// };
