@@ -11,20 +11,41 @@
  */
 class Solution {
 public:
-    vector<int> res;
     vector<int> inorderTraversal(TreeNode* root) {
-        if(!root)
+        vector<int> res;
+        if(root == nullptr)
             return res;
-        Traverse(root);
+        auto dfs = [&](this auto&& dfs, TreeNode* node) -> void
+        {
+            if(node == nullptr)
+                return;
+            dfs(node->left);
+            res.emplace_back(node->val);
+            dfs(node->right);
+            return;
+        };
+
+        dfs(root);
         return res;
     }
-
-    void Traverse(TreeNode* root)
-    {
-        if(!root)
-            return;
-        Traverse(root->left);
-        res.emplace_back(root->val);
-        Traverse(root->right);
-    }
 };
+
+// class Solution {
+// public:
+//     vector<int> res;
+//     vector<int> inorderTraversal(TreeNode* root) {
+//         if(!root)
+//             return res;
+//         Traverse(root);
+//         return res;
+//     }
+
+//     void Traverse(TreeNode* root)
+//     {
+//         if(!root)
+//             return;
+//         Traverse(root->left);
+//         res.emplace_back(root->val);
+//         Traverse(root->right);
+//     }
+// };
