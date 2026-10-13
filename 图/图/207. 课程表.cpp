@@ -1,34 +1,68 @@
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        vector< vector<int>> graph(numCourses);
-        vector<int> indegree(numCourses, 0);
+        vector<int> inDegree(numCourses, 0);
+        vector<vector<int>> graph(numCourses);
         for(auto p : prerequisites)
         {
-            graph[p[1]].push_back(p[0]);
-            indegree[p[0]]++;
+            inDegree[p[0]]++;
+            graph[p[1]].emplace_back(p[0]);
         }
-        queue<int> q;
-        for(int i = 0; i < numCourses; i++)
+        queue<int> que;
+        int cnt = 0;
+        for(int i = 0; i < inDegree.size(); i++)
         {
-            if(indegree[i] == 0)
-                q.push(i);
+            if(inDegree[i] == 0)
+                que.push(i);
         }
-        while(!q.empty())
+        while(!que.empty())
         {
-            int cur = q.front();
-            q.pop();
-            numCourses--;
-            for(auto it : graph[cur])
+            int idx = que.front();
+            que.pop();
+            cnt++;
+            for(auto it : graph[idx])
             {
-                indegree[it]--;
-                if(indegree[it] == 0)
-                    q.push(it);
+                if(--inDegree[it] == 0)
+                {
+                    que.push(it);
+                }
             }
         }
-        return numCourses == 0;
+        return numCourses == cnt;
     }
 };
+
+// class Solution {
+// public:
+//     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+//         vector< vector<int>> graph(numCourses);
+//         vector<int> indegree(numCourses, 0);
+//         for(auto p : prerequisites)
+//         {
+//             graph[p[1]].push_back(p[0]);
+//             indegree[p[0]]++;
+//         }
+//         queue<int> q;
+//         for(int i = 0; i < numCourses; i++)
+//         {
+//             if(indegree[i] == 0)
+//                 q.push(i);
+//         }
+//         while(!q.empty())
+//         {
+//             int cur = q.front();
+//             q.pop();
+//             numCourses--;
+//             for(auto it : graph[cur])
+//             {
+//                 indegree[it]--;
+//                 if(indegree[it] == 0)
+//                     q.push(it);
+//             }
+//         }
+//         return numCourses == 0;
+//     }
+// };
 
 // class Solution {
 // public:
